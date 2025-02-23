@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index2.html">
+            <a class="navbar-brand" href="dashboard.php">
                 <img src="css/kepek/logo.png" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,9 +19,9 @@ if (!isset($_SESSION['user_id'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="appointment.html">Időpontfoglalás</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="appointment.html">Időpontfoglalás</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact2.html">Kapcsolat</a>
                     </li>
@@ -56,10 +49,5 @@ if (!isset($_SESSION['user_id'])) {
             });
         });
     </script>
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Barbershop. Minden jog fenntartva.</p>
-        </div>
-    </footer>
 </body>
 </html>
