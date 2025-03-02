@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="contact.html">Kapcsolat</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Rólunk</a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/barbershop/login.php">Bejelentkezés/Regisztráció</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Bejelentkezés/Regisztráció</a></li>
                 </ul>
             </div>
         </div>

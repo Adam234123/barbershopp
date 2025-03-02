@@ -29,7 +29,7 @@
                         <a class="nav-link" href="about2.html">Rólunk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://localhost/barbershop/logout.php">Kijelentkezés</a>
+                        <a class="nav-link" href="logout.php">Kijelentkezés</a>
                     </li>
                 </ul>
             </div>

@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $mail->addAddress($email);
 
                         $mail->isHTML(true);
-                        $mail->Subject = 'Regisztrációs Visszaigazolás';
+                        $mail->Subject = 'Regisztracios Visszaigazolas';
                         $mail->Body    = 'Kedves felhasználó! <br><br> Sikeresen regisztráltál a Barbershop rendszerébe. Kérlek, lépj be a fiókodba!';
 
                         $mail->send();
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="contact.html">Kapcsolat</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Rólunk</a></li>
-                    <li class="nav-item"><a class="nav-link" href="http://localhost/barbershop/login.php">Bejelentkezés</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Bejelentkezés</a></li>
                 </ul>
             </div>
         </div>
@@ -124,9 +124,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
    
 </body> 
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2025 Barbershop. Minden jog fenntartva.</p>
-    </div>
-</footer>
 </html>
