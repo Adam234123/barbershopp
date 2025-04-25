@@ -7,7 +7,6 @@ use Firebase\JWT\Key;
 
 $key = 'titkoskulcs123';
 
-// Csak bejelentkezett admin férhet hozzá
 if (!isset($_COOKIE['token'])) {
     header("Location: login.php");
     exit();
@@ -26,7 +25,6 @@ try {
     exit();
 }
 
-// Törlés csak POST módszerrel és ha ID meg van adva
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     $id = intval($_POST['id']);
 
@@ -36,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     $stmt->close();
 }
 
-// Visszairányítás
 header("Location: admin.php");
 exit();
 ?>

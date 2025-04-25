@@ -7,26 +7,28 @@ use Firebase\JWT\Key;
 
 $key = 'titkoskulcs123';
 
-// Token ellenőrzés
-if (!isset($_COOKIE['token'])) {
-    header("Location: login.php");
-    exit();
-}
+if (isset($_COOKIE['token'])) {
+    try {
+        $decoded = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
 
-try {
-    $decoded = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
+        $appointmentMenu = '<li class="nav-item"><a class="nav-link" href="appointment.php">Időpontfoglalás</a></li>';
 
-    if ($decoded->role !== 'admin') {
+        if ($decoded->role === 'admin') {
+            $adminMenu = '<li class="nav-item"><a class="nav-link" href="admin.php">Admin</a></li>';
+        }
+
+        $authMenu = '<li class="nav-item"><a class="nav-link" href="logout.php">Kijelentkezés</a></li>';
+
+    } catch (Exception $e) {
+        setcookie("token", "", time() - 3600, "/");
         header("Location: login.php");
         exit();
     }
-
-} catch (Exception $e) {
+} else {
     header("Location: login.php");
     exit();
 }
 
-// Foglalások lekérése
 $result = $conn->query("SELECT * FROM appointments ORDER BY appointment_date ASC, appointment_time ASC");
 ?>
 
@@ -34,7 +36,7 @@ $result = $conn->query("SELECT * FROM appointments ORDER BY appointment_date ASC
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Foglalások kezelése</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -64,9 +66,11 @@ $result = $conn->query("SELECT * FROM appointments ORDER BY appointment_date ASC
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.php">Főoldal</a></li>
-                <li class="nav-item"><a class="nav-link" href="appointment.php">Időpontfoglalás</a></li>
-                <li class="nav-item"><a class="nav-link" href="logout.php">Kijelentkezés</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.php">Kapcsolat</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php">Rólunk</a></li>
+                <?= $appointmentMenu ?>
+                <?= $adminMenu ?>
+                <?= $authMenu ?>
             </ul>
         </div>
     </div>

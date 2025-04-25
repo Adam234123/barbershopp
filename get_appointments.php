@@ -9,7 +9,6 @@ header('Content-Type: application/json');
 
 $key = 'titkoskulcs123';
 
-// Token ellenőrzés (cookie-ból)
 if (!isset($_COOKIE['token'])) {
     echo json_encode(["status" => "error", "message" => "Hozzáférés megtagadva!"]);
     exit();
@@ -23,7 +22,6 @@ try {
     exit();
 }
 
-// Foglalások lekérdezése
 $sql = "SELECT appointment_date, appointment_time FROM appointments";
 $result = $conn->query($sql);
 

@@ -9,7 +9,6 @@ header('Content-Type: application/json');
 
 $key = 'titkoskulcs123';
 
-// Token ellenőrzés (cookie-ból)
 if (!isset($_COOKIE['token'])) {
     echo json_encode(["status" => "error", "message" => "Nincs jogosultság! Jelentkezz be."]);
     exit();
@@ -28,7 +27,6 @@ try {
     exit();
 }
 
-// POST kérés feldolgozása
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'] ?? '';
     $date = $_POST['date'] ?? '';
@@ -39,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Ellenőrizni kell, hogy hétköznap van-e és 9:00-16:00 között
     $dayOfWeek = date('N', strtotime($date));
     $hour = (int)date('H', strtotime($time));
     $minute = (int)date('i', strtotime($time));
@@ -49,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Ellenőrizzük, hogy az időpont szabad-e
     $check_sql = "SELECT * FROM appointments WHERE appointment_date = ? AND appointment_time = ?";
     $stmt = $conn->prepare($check_sql);
     $stmt->bind_param("ss", $date, $time);
@@ -59,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         echo json_encode(["status" => "error", "message" => "Ez az időpont már foglalt!"]);
     } else {
-        // Beszúrás az adatbázisba
         $insert_sql = "INSERT INTO appointments (customer_name, appointment_date, appointment_time, user_id) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_sql);
         $stmt->bind_param("sssi", $name, $date, $time, $userId);
